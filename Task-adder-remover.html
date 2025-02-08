@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task-prop.css">
+    <title>Task-2</title>
+</head>
+<body>
+    <main class="flex" align="center">
+        <form class="front">
+            <label for="task">Task Name:</label>&nbsp;
+            <input type="text" name="task" id="taskid" placeholder="Enter the Task todo" required/>
+            <br>
+            <br>
+            <button type="submit", id="btn" onclick="adderTask(event)">Add Task</button>
+        </form>
+        <table id="list" align="center">
+            <thead>
+                <th>
+                    Task Name
+                </th>
+                <th>
+                    Action
+                </th>               
+            </thead>
+            <tbody>
+                    
+            </tbody>
+        </table>
+    </main>
+    
+</body>
+<script>
+
+    function adderTask(event){
+        event.preventDefault();
+        const text = document.getElementById("taskid").value;
+        if(text.trim()==="")
+        {
+            alert("Please enter some text to task");
+        }
+        else{
+            const table = document.getElementById('list').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            const c1 = newRow.insertCell(0);
+            const c3 = newRow.insertCell(1);
+            
+            c1.textContent=text;
+
+            createbtn = document.createElement('button');
+
+            createbtn.textContent = 'Remove';
+
+            createbtn.addEventListener('click', function() {
+                table.deleteRow(newRow.rowIndex-1);            
+            });
+
+            c3.appendChild(createbtn);
+
+            document.getElementById("taskid").value="";
+        }
+    }
+
+</script>
+</html>
